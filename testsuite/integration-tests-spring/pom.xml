@@ -20,8 +20,8 @@
     </properties>
 
     <modules>
-<!--        <module>deployment</module>-->
-<!--        <module>inmodule</module>-->
+        <module>deployment</module>
+        <module>inmodule</module>
         <module>unit</module>
     </modules>
 
@@ -70,7 +70,6 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>arquillian-utils</artifactId>
             <scope>test</scope>
-            <version>${version.org.jboss.resteasy}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.inject</groupId>
@@ -83,8 +82,13 @@
         <dependency>
             <groupId>org.jboss.resteasy.spring</groupId>
             <artifactId>resteasy-spring</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>shared</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
