@@ -133,7 +133,7 @@
                         <offline>${galleon.offline}</offline>
                         <plugin-options>
                             <!-- Disable maven distribution as we need the converted JAR's -->
-                            <!-- <jboss-maven-dist/> -->
+                            <jboss-maven-dist/>
                             <jboss-fork-embedded>${galleon.fork.embedded}</jboss-fork-embedded>
                             <optional-packages>passive+</optional-packages>
                         </plugin-options>
