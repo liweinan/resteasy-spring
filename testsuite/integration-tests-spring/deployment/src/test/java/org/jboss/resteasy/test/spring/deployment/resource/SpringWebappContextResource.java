@@ -16,21 +16,21 @@ public class SpringWebappContextResource {
 
    private static Logger logger = Logger.getLogger(SpringWebappContextResource.class);
    private UriInfo ui;
-   private HttpHeaders headers;
+//   private HttpHeaders headers;
 
-   @Context
-   public void setUriInfo(UriInfo ui) {
-      this.ui = ui;
-   }
+//   @Context
+//   public void setUriInfo(UriInfo ui) {
+//      this.ui = ui;
+//   }
 
-   @Context
-   public void setHttpHeaders(HttpHeaders headers) {
-      this.headers = headers;
-   }
+//   @Context
+//   public void setHttpHeaders(HttpHeaders headers) {
+//      this.headers = headers;
+//   }
 
    @GET
    @Path("/uri")
-   public String echoURI() {
+   public String echoURI(@Context UriInfo ui) {
       sleep();
       logger.info("requestUribuilder: " + ui.getRequestUriBuilder().toString());
       logger.info("request uri: " + ui.getRequestUri());
@@ -39,10 +39,11 @@ public class SpringWebappContextResource {
 
    @GET
    @Path("/headers")
-   public String echoHeaders() {
+   public String echoHeaders(@Context UriInfo ui, @Context HttpHeaders headers) {
       sleep();
-      logger.info("uri: " + ui.getRequestUri().toString());
-      logger.info("builder: " + ui.getRequestUriBuilder().build().toString());
+//      UriInfo ui = null;
+//      logger.info("uri: " + ui.getRequestUri().toString());
+//      logger.info("builder: " + ui.getRequestUriBuilder().build().toString());
       String s = headers != null && headers.getRequestHeader(HttpHeaders.ACCEPT) != null ? (ui != null ? ui
             .getRequestUriBuilder().build().toString()
             : "null")
