@@ -195,6 +195,8 @@
             </activation>
             <properties>
                 <jboss.home>${server.home}</jboss.home>
+                <debugJvmArgs>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:${debug.port}
+                </debugJvmArgs>
             </properties>
         </profile>
         <profile>

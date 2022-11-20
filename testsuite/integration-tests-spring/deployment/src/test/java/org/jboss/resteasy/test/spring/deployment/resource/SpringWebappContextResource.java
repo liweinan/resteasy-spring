@@ -18,10 +18,10 @@ public class SpringWebappContextResource {
    private UriInfo ui;
    private HttpHeaders headers;
 
-   @Context
-   public void setUriInfo(UriInfo ui) {
-      this.ui = ui;
-   }
+//   @Context
+//   public void setUriInfo(UriInfo ui) {
+//      this.ui = ui;
+//   }
 
    @Context
    public void setHttpHeaders(HttpHeaders headers) {
@@ -30,7 +30,7 @@ public class SpringWebappContextResource {
 
    @GET
    @Path("/uri")
-   public String echoURI() {
+   public String echoURI(@Context UriInfo ui) {
       sleep();
       logger.info("requestUribuilder: " + ui.getRequestUriBuilder().toString());
       logger.info("request uri: " + ui.getRequestUri());
@@ -39,7 +39,7 @@ public class SpringWebappContextResource {
 
    @GET
    @Path("/headers")
-   public String echoHeaders() {
+   public String echoHeaders(@Context UriInfo ui) {
       sleep();
       logger.info("uri: " + ui.getRequestUri().toString());
       logger.info("builder: " + ui.getRequestUriBuilder().build().toString());
