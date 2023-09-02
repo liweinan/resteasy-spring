@@ -14,7 +14,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
 //import org.jboss.resteasy.setup.AbstractUsersRolesSecurityDomainSetup;
 import org.jboss.resteasy.spi.HttpResponseCodes;
-import org.jboss.resteasy.test.spring.inmodule.resource.GlobalExceptionHandler;
+//import org.jboss.resteasy.test.spring.inmodule.resource.GlobalExceptionHandler;
 import org.jboss.resteasy.test.spring.inmodule.resource.SpringMvcHttpResponseCodesPerson;
 import org.jboss.resteasy.test.spring.inmodule.resource.SpringMvcHttpResponseCodesResource;
 import org.jboss.resteasy.test.spring.inmodule.resource.TestResource;
@@ -61,7 +61,7 @@ public class SpringMvcHttpResponseCodesTest {
         war.addAsWebInfResource(SpringMvcHttpResponseCodesTest.class.getPackage(), "springMvcHttpResponseCodes/applicationContext.xml", "applicationContext.xml");
         war.addAsManifestResource(new StringAsset("Dependencies: org.springframework.spring meta-inf\n"), "MANIFEST.MF");
         war.addClass(SpringMvcHttpResponseCodesPerson.class);
-        war.addClass(GlobalExceptionHandler.class);
+//        war.addClass(GlobalExceptionHandler.class);
         Archive archive = TestUtil.finishContainerPrepare(war, null, SpringMvcHttpResponseCodesResource.class, TestResource.class);
 
         archive.as(ZipExporter.class).exportTo(
