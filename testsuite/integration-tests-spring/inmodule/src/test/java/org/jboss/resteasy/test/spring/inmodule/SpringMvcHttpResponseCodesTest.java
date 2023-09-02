@@ -9,10 +9,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.as.arquillian.api.ServerSetup;
+//import org.jboss.as.arquillian.api.ServerSetup;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
-import org.jboss.resteasy.setup.AbstractUsersRolesSecurityDomainSetup;
+//import org.jboss.resteasy.setup.AbstractUsersRolesSecurityDomainSetup;
 import org.jboss.resteasy.spi.HttpResponseCodes;
 import org.jboss.resteasy.test.spring.inmodule.resource.GlobalExceptionHandler;
 import org.jboss.resteasy.test.spring.inmodule.resource.SpringMvcHttpResponseCodesPerson;
@@ -44,7 +44,7 @@ import java.io.File;
  * @tpTestCaseDetails Tests various http response codes returned from the server
  * @tpSince RESTEasy 3.1.0
  */
-@ServerSetup({SpringMvcHttpResponseCodesTest.SecurityDomainSetup.class})
+//@ServerSetup({SpringMvcHttpResponseCodesTest.SecurityDomainSetup.class})
 @RunWith(Arquillian.class)
 @RunAsClient
 public class SpringMvcHttpResponseCodesTest {
@@ -197,10 +197,10 @@ public class SpringMvcHttpResponseCodesTest {
 //        Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus());
 //    }
 
-    static class SecurityDomainSetup extends AbstractUsersRolesSecurityDomainSetup {
-        SecurityDomainSetup() {
-            super(SpringMvcHttpResponseCodesTest.class.getResource("users.properties"),
-                    SpringMvcHttpResponseCodesTest.class.getResource("roles.properties"));
-        }
-    }
+//    static class SecurityDomainSetup extends AbstractUsersRolesSecurityDomainSetup {
+//        SecurityDomainSetup() {
+//            super(SpringMvcHttpResponseCodesTest.class.getResource("users.properties"),
+//                    SpringMvcHttpResponseCodesTest.class.getResource("roles.properties"));
+//        }
+//    }
 }
