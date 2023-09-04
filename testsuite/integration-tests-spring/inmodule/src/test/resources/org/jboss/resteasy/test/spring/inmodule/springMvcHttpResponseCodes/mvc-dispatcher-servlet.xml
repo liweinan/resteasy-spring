@@ -6,7 +6,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <import resource="classpath:springmvc-resteasy.xml"/>
 <!--    <context:annotation-config/>-->
-    <mvc:annotation-driven/>
+    <context:component-scan base-package="org.jboss.resteasy.test.spring.inmodule.resource"/>
+<!--    <mvc:annotation-driven/>-->
 
     <bean id="springMvcHttpResponseCodesResource" class="org.jboss.resteasy.test.spring.inmodule.resource.SpringMvcHttpResponseCodesResource"/>
     <bean id="testResource" class="org.jboss.resteasy.test.spring.inmodule.resource.TestResource"/>
