@@ -1,5 +1,6 @@
 package org.jboss.resteasy.galleon.pack.test.layers.metadata;
 
+import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -22,6 +23,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 
 public class AbstractLayerMetaDataTestCase {
 
@@ -51,16 +53,26 @@ public class AbstractLayerMetaDataTestCase {
     }
 
 
-    protected static Path createWebArchive(String archiveName, String xmlName, URL xmlContent) {
+    protected static Archive<?> createWebArchive(String archiveName, String xmlName, URL xmlContent) {
         WebArchive war = ShrinkWrap.create(WebArchive.class);
         war.addAsWebInfResource(xmlContent, xmlName);
-        ZipExporter exporter = war.as(ZipExporter.class);
-        Path path = ARCHIVES_PATH.resolve(archiveName);
-        exporter.exportTo(path.toFile());
-        return path;
+        war.addAsWebInfResource("spring-servlet.xml", "spring-servlet.xml");
+        war.addClass(SpringMVCResource.class);
+        war.addClass(JaxrsApplication.class);
+        war.addClass(RESTEasySpringResource.class);
+        return war;
+//        ZipExporter exporter = war.as(ZipExporter.class);
+//        Path path = ARCHIVES_PATH.resolve(archiveName);
+//        exporter.exportTo(path.toFile());
+//        return path;
     }
 
-    protected Set<String> checkLayersForArchive(Path archivePath, String expectedLayer) throws Exception {
+    protected Set<String> checkLayersForArchive(String archiveName, Archive<?> war, String expectedLayer) throws Exception {
+        ZipExporter exporter = war.as(ZipExporter.class);
+        Path archivePath = ARCHIVES_PATH.resolve(archiveName);
+        exporter.exportTo(archivePath.toFile());
+
+
         Arguments arguments = Arguments.scanBuilder().setBinaries(Collections.singletonList(archivePath)).build();
         ScanResults scanResults = GlowSession.scan(MavenResolver.newMavenResolver(), arguments, GlowMessageWriter.DEFAULT);
         Set<String> foundLayers = scanResults.getDiscoveredLayers().stream().map(l -> l.getName()).collect(Collectors.toSet());
